@@ -124,7 +124,8 @@ const WeatherPressureUnits = {
     AT: 6,
     TORR: 7,
     PSI: 8,
-    MMHG: 9
+    MMHG: 9,
+    MBAR: 10
 };
 
 const WeatherPosition = {
@@ -1240,8 +1241,13 @@ const OpenweatherMenuButton = new Lang.Class({
                 break;
 
             case WeatherPressureUnits.BAR:
-                pressure = (pressure / 1000).toFixed(this._decimal_places);
+                pressure = (pressure / 100000).toFixed(this._decimal_places);
                 pressure_unit = _("bar");
+                break;
+            
+            case WeatherPressureUnits.MBAR:
+                pressure = (pressure / 100).toFixed(this._decimal_places);
+                presure_unit = _("mbar");
                 break;
 
             case WeatherPressureUnits.PA:
